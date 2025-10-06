@@ -9,8 +9,8 @@
 <link>https://kos-danilov.github.io/</link>
 <atom:link href="https://kos-danilov.github.io/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog built with Quarto</description>
-<generator>quarto-1.8.24</generator>
-<lastBuildDate>Sun, 05 Oct 2025 22:00:00 GMT</lastBuildDate>
+<generator>quarto-1.8.25</generator>
+<lastBuildDate>Mon, 06 Oct 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>How to make a quarto blog</title>
   <dc:creator>Konstantin Danilov</dc:creator>
@@ -140,7 +140,7 @@ font-style: inherit;">---</span></span></code></pre></div></div></li>
  ]]></description>
   <category>quarto</category>
   <guid>https://kos-danilov.github.io/posts/make_blog/</guid>
-  <pubDate>Sun, 05 Oct 2025 22:00:00 GMT</pubDate>
+  <pubDate>Mon, 06 Oct 2025 00:00:00 GMT</pubDate>
   <media:content url="https://kos-danilov.github.io/posts/make_blog/image.png" medium="image" type="image/png" height="144" width="144"/>
 </item>
 <item>
@@ -162,7 +162,7 @@ font-style: inherit;">---</span></span></code></pre></div></div></li>
   <category>code</category>
   <category>analysis</category>
   <guid>https://kos-danilov.github.io/posts/post-with-code/</guid>
-  <pubDate>Sat, 04 Oct 2025 22:00:00 GMT</pubDate>
+  <pubDate>Sun, 05 Oct 2025 00:00:00 GMT</pubDate>
   <media:content url="https://kos-danilov.github.io/posts/post-with-code/image.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
@@ -184,7 +184,7 @@ font-style: inherit;">---</span></span></code></pre></div></div></li>
  ]]></description>
   <category>news</category>
   <guid>https://kos-danilov.github.io/posts/welcome/</guid>
-  <pubDate>Thu, 02 Oct 2025 22:00:00 GMT</pubDate>
+  <pubDate>Fri, 03 Oct 2025 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
