@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>blog</title>
+<link>https://your-website-url.example.com/</link>
+<atom:link href="https://your-website-url.example.com/index.xml" rel="self" type="application/rss+xml"/>
+<description>A blog built with Quarto</description>
+<generator>quarto-1.8.24</generator>
+<lastBuildDate>Sun, 05 Oct 2025 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>How to make a quarto blog</title>
+  <dc:creator>Konstantin Danilov</dc:creator>
+  <link>https://your-website-url.example.com/posts/make_blog/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>This post contains instruction about how to make your first post using Quarto blog.</p>
+<section id="creating-a-new-blog" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-new-blog">Creating a new blog</h2>
+<ol type="1">
+<li><p>Open VSCode</p></li>
+<li><p>Create a new blog project:</p>
+<ul>
+<li>Press <code>Ctrl+Shift+P</code> (Windows/Linux) or <code>Cmd+Shift+P</code> (Mac)</li>
+<li>Type “Quarto: Create Project”</li>
+<li>Select “Blog Project”</li>
+<li>Choose a directory for your blog</li>
+<li>Enter a title for your blog</li>
+</ul></li>
+<li><p>Open the project:</p>
+<ul>
+<li>Go to <code>File &gt; Open Folder</code></li>
+<li>Select your blog directory</li>
+</ul></li>
+<li><p>Preview your blog:</p>
+<ul>
+<li>Click the “Preview” button in the top right corner of VSCode</li>
+<li>Or press <code>Ctrl+Shift+P</code> and type “Quarto: Preview”</li>
+</ul></li>
+</ol>
+</section>
+<section id="adding-a-new-post" class="level2">
+<h2 class="anchored" data-anchor-id="adding-a-new-post">Adding a new post</h2>
+<ol type="1">
+<li><p>Create a new post:</p>
+<ul>
+<li>Right-click on the <code>posts</code> folder</li>
+<li>Select “New Folder”</li>
+<li>Name it (e.g., “my-first-post”)</li>
+</ul></li>
+<li><p>Create the post file:</p>
+<ul>
+<li>Right-click on your new folder</li>
+<li>Select “New File”</li>
+<li>Name it “index.qmd”</li>
+</ul></li>
+<li><p>Add YAML header to your post:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">---</span></span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">title</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"My Post Title"</span></span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">author</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Your Name"</span></span>
+<span id="cb1-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">date</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2025-10-06"</span></span>
+<span id="cb1-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">categories</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">[</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">news</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">,</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> analysis</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">]</span></span>
+<span id="cb1-6"><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">---</span></span></code></pre></div></div></li>
+<li><p>Write your content using markdown</p></li>
+<li><p>Preview changes:</p>
+<ul>
+<li>Click the “Preview” button in the top right corner</li>
+<li>Or use Command Palette (Ctrl+Shift+P / Cmd+Shift+P) and type “Quarto: Preview”</li>
+</ul></li>
+</ol>
+</section>
+<section id="publishing" class="level2">
+<h2 class="anchored" data-anchor-id="publishing">Publishing</h2>
+<ol type="1">
+<li><p>Render your post</p></li>
+<li><p>Deploy to GitHub Pages or your preferred hosting service</p></li>
+</ol>
+
+
+</section>
+
+ ]]></description>
+  <category>quarto</category>
+  <guid>https://your-website-url.example.com/posts/make_blog/</guid>
+  <pubDate>Sun, 05 Oct 2025 22:00:00 GMT</pubDate>
+  <media:content url="https://your-website-url.example.com/posts/make_blog/image.png" medium="image" type="image/png" height="144" width="144"/>
+</item>
+<item>
+  <title>Post With Code</title>
+  <dc:creator>Harlow Malloc</dc:creator>
+  <link>https://your-website-url.example.com/posts/post-with-code/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>This is a post with executable code.</p>
+
+
+
+ ]]></description>
+  <category>news</category>
+  <category>code</category>
+  <category>analysis</category>
+  <guid>https://your-website-url.example.com/posts/post-with-code/</guid>
+  <pubDate>Sat, 04 Oct 2025 22:00:00 GMT</pubDate>
+  <media:content url="https://your-website-url.example.com/posts/post-with-code/image.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Welcome To My Blog</title>
+  <dc:creator>Tristan O&#39;Malley</dc:creator>
+  <link>https://your-website-url.example.com/posts/welcome/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>This is the first post in a Quarto blog. Welcome!</p>
+<p><img src="https://your-website-url.example.com/posts/welcome/thumbnail.jpg" class="img-fluid"></p>
+<p>Since this post doesn’t specify an explicit <code>image</code>, the first image in the post will be used in the listing page of posts.</p>
+
+
+
+ ]]></description>
+  <category>news</category>
+  <guid>https://your-website-url.example.com/posts/welcome/</guid>
+  <pubDate>Thu, 02 Oct 2025 22:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>
