@@ -1,5 +1,5 @@
 ---
-title: "blog"
+title: "MedBioInfo Blog"
 listing:
   contents: posts
   feed: true
