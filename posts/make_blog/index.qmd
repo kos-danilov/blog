@@ -1,0 +1,60 @@
+---
+title: "How to make a quarto blog"
+author: "Konstantin Danilov"
+date: "2025-10-06"
+categories: [quarto]
+image: "image.png"
+---
+
+This post contains instruction about how to make your first post using Quarto blog.
+
+## Creating a new blog
+
+1. Open VSCode
+
+2. Create a new blog project:
+    - Press `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (Mac)
+    - Type "Quarto: Create Project"
+    - Select "Blog Project"
+    - Choose a directory for your blog
+    - Enter a title for your blog
+
+3. Open the project:
+    - Go to `File > Open Folder`
+    - Select your blog directory
+
+4. Preview your blog:
+    - Click the "Preview" button in the top right corner of VSCode
+    - Or press `Ctrl+Shift+P` and type "Quarto: Preview"
+
+## Adding a new post
+
+1. Create a new post:
+    - Right-click on the `posts` folder
+    - Select "New Folder"
+    - Name it (e.g., "my-first-post")
+2. Create the post file:
+    - Right-click on your new folder
+    - Select "New File"
+    - Name it "index.qmd"
+3. Add YAML header to your post:
+
+    ```yaml
+    ---
+    title: "My Post Title"
+    author: "Your Name"
+    date: "2025-10-06"
+    categories: [news, analysis]
+    ---
+    ```
+
+4. Write your content using markdown
+5. Preview changes:
+    - Click the "Preview" button in the top right corner
+    - Or use Command Palette (Ctrl+Shift+P / Cmd+Shift+P) and type "Quarto: Preview"
+
+## Publishing
+
+1. Render your post
+
+2. Deploy to GitHub Pages or your preferred hosting service
