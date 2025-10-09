@@ -1,0 +1,118 @@
+---
+title: "Running reproducible analysis using pixi or containers for environment 
+    management"
+author: "Konstantin Danilov"
+date: "2025-10-07"
+categories: [pixi, docker, apptainer, qc]
+image: "image.svg"
+---
+
+Learn how to manage dependencies and share your analysis environment with others using pixi and containers.
+
+## Managing environments using pixi
+
+Pixi is a modern, fast, and conda-compatible environment manager. It helps create isolated environments for your projects, handling dependencies across multiple programming languages. Key features include:
+
+- Fast package installation and environment creation
+- Conda-compatible, accessing the same package ecosystem
+- Lockfile support for reproducible environments
+- Simple CLI interface with intuitive commands
+- Multi-language support (Python, R, C++, etc.)
+
+::: {.callout-tip}
+To get started with pixi, first install it following the [installation guide](https://prefix.dev/docs/pixi/installation). 
+:::
+
+### Create a new environment
+
+It is a good practice to have a separate env for every project. In order to configure a new env in the currect project directory use command:
+
+```{.bash}
+pixi init -c conda-forge -c bioconda
+```
+
+If you want to add something (for example fastqc) to the env use:
+
+```{.bash}
+pixi add fastqc
+```
+
+You can test it using:
+
+```{.bash}
+pixi run fastqc --help
+```
+
+or by activating env:
+
+```{.bash}
+pixi shell
+fastqc
+```
+
+### Alternatives
+
+Of course there are several environment managers avaliable, you can check pros and cons of common ones in this table:
+
+| Tool | Description | Pros | Cons |
+|------|-------------|------|------|
+| conda | Package and environment manager for many programming languages | - Multi-language support<br/>- Large package ecosystem<br/>- Industry standard | - Slow resolver<br/>- Heavy installation<br/>- Complex dependency handling |
+| pixi | Fast conda-compatible environment manager | - Fast installation<br>- Lockfile support<br>- Conda-compatible | - Relatively new<br>- Smaller community<br>- Limited documentation |
+| venv | Python built-in virtual environment tool | - Lightweight<br>- Built into Python<br>- Simple to use | - Python-only<br>- No dependency resolution<br>- Basic feature set |
+| virtualenv | Enhanced virtual environment tool | - Mature project<br>- Good integration<br>- Cross-platform | - Python-only<br>- Manual dependency management<br>- No lockfile by default |
+| poetry | Modern Python dependency manager | - Modern workflow<br>- Good dependency resolver<br>- Project management | - Python-only<br>- Learning curve<br>- Can be slow |
+
+## Get more control using containers
+
+Containers offer a higher level of isolation and reproducibility by packaging not just the dependencies, but the entire runtime environment. Two popular containerization solutions are:
+
+- **Docker**: Industry standard for containerization, suitable for development and testing
+    - Creates lightweight, portable environments
+    - Extensive ecosystem of pre-built images (Dockerhub)
+    - Great for CI/CD pipelines
+
+- **Singularity/Apptainer**: Designed for HPC and scientific computing (no root required)
+    - Better security model for shared systems
+    - Native support for HPC workloads
+    - Seamless conversion from Docker containers
+
+::: {.callout-tip}
+Since we don't have root rights on our server, we're going to use apptainers in connection with singularity images. But this is not a problem - we still can use Docker images after conversion to singularity. 
+:::
+
+### Source
+
+There are many ways how to get a container:
+
+1. Pull from container registry ([DockerHub](https://hub.docker.com/))
+2. Convert Docker image to Singularity
+3. Build from definition file
+4. Construct container using Wave ([Sequera](https://seqera.io/containers/))
+
+### Creating the container
+
+We can use the following command to create our first container:
+
+```{.bash}
+apptainer pull <name.sif> <link_to_container>
+```
+
+::: {.callout-tip}
+Note, it is better to use specific version in the file name. 
+:::
+
+### Run tools within a container
+
+::::: {.panel-tabset}
+## Running 'from the outside'
+Run the command inside the container (good for pipelines):
+```{.bash}
+apptainer exec <name-of-container> <command>
+```
+
+## Running 'from the inside'
+Run in interactive mode (good for debugging):
+```{.bash}
+apptainer shell <name-of-container>
+```
+:::::

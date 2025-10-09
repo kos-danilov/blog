@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/pixi_containers/index.html",
       "/posts/make_blog/index.html"
     ]
   }

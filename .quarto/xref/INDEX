@@ -13,5 +13,8 @@
   },
   "posts/make_blog/index.qmd": {
     "index.html": "e06f63d0"
+  },
+  "posts/pixi_containers/index.qmd": {
+    "index.html": "b9edbe01"
   }
 }
