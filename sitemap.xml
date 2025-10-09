@@ -2,14 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kos-danilov.github.io/about.html</loc>
-    <lastmod>2025-10-06T12:43:44.764Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kos-danilov.github.io/index.html</loc>
-    <lastmod>2025-10-06T12:43:44.764Z</lastmod>
+    <lastmod>2025-10-09T19:43:43.973Z</lastmod>
   </url>
   <url>
     <loc>https://kos-danilov.github.io/posts/make_blog/index.html</loc>
-    <lastmod>2025-10-06T12:43:44.766Z</lastmod>
+    <lastmod>2025-10-09T19:43:43.975Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kos-danilov.github.io/index.html</loc>
+    <lastmod>2025-10-09T19:43:43.973Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kos-danilov.github.io/posts/pixi_containers/index.html</loc>
+    <lastmod>2025-10-09T19:43:43.976Z</lastmod>
   </url>
 </urlset>

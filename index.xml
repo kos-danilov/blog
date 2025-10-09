@@ -10,7 +10,235 @@
 <atom:link href="https://kos-danilov.github.io/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog built with Quarto</description>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Mon, 06 Oct 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 07 Oct 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Running reproducible analysis using pixi or containers for environment management</title>
+  <dc:creator>Konstantin Danilov</dc:creator>
+  <link>https://kos-danilov.github.io/posts/pixi_containers/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Learn how to manage dependencies and share your analysis environment with others using pixi and containers.</p>
+<section id="managing-environments-using-pixi" class="level2">
+<h2 class="anchored" data-anchor-id="managing-environments-using-pixi">Managing environments using pixi</h2>
+<p>Pixi is a modern, fast, and conda-compatible environment manager. It helps create isolated environments for your projects, handling dependencies across multiple programming languages. Key features include:</p>
+<ul>
+<li>Fast package installation and environment creation</li>
+<li>Conda-compatible, accessing the same package ecosystem</li>
+<li>Lockfile support for reproducible environments</li>
+<li>Simple CLI interface with intuitive commands</li>
+<li>Multi-language support (Python, R, C++, etc.)</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To get started with pixi, first install it following the <a href="https://prefix.dev/docs/pixi/installation">installation guide</a>.</p>
+</div>
+</div>
+<section id="create-a-new-environment" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-new-environment">Create a new environment</h3>
+<p>It is a good practice to have a separate env for every project. In order to configure a new env in the currect project directory use command:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pixi</span> init <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-c</span> conda-forge <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-c</span> bioconda</span></code></pre></div></div>
+<p>If you want to add something (for example fastqc) to the env use:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pixi</span> add fastqc</span></code></pre></div></div>
+<p>You can test it using:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pixi</span> run fastqc <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--help</span></span></code></pre></div></div>
+<p>or by activating env:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pixi</span> shell</span>
+<span id="cb4-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">fastqc</span></span></code></pre></div></div>
+</section>
+<section id="alternatives" class="level3">
+<h3 class="anchored" data-anchor-id="alternatives">Alternatives</h3>
+<p>Of course there are several environment managers avaliable, you can check pros and cons of common ones in this table:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 41%">
+<col style="width: 19%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tool</th>
+<th>Description</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>conda</td>
+<td>Package and environment manager for many programming languages</td>
+<td>- Multi-language support<br>- Large package ecosystem<br>- Industry standard</td>
+<td>- Slow resolver<br>- Heavy installation<br>- Complex dependency handling</td>
+</tr>
+<tr class="even">
+<td>pixi</td>
+<td>Fast conda-compatible environment manager</td>
+<td>- Fast installation<br>- Lockfile support<br>- Conda-compatible</td>
+<td>- Relatively new<br>- Smaller community<br>- Limited documentation</td>
+</tr>
+<tr class="odd">
+<td>venv</td>
+<td>Python built-in virtual environment tool</td>
+<td>- Lightweight<br>- Built into Python<br>- Simple to use</td>
+<td>- Python-only<br>- No dependency resolution<br>- Basic feature set</td>
+</tr>
+<tr class="even">
+<td>virtualenv</td>
+<td>Enhanced virtual environment tool</td>
+<td>- Mature project<br>- Good integration<br>- Cross-platform</td>
+<td>- Python-only<br>- Manual dependency management<br>- No lockfile by default</td>
+</tr>
+<tr class="odd">
+<td>poetry</td>
+<td>Modern Python dependency manager</td>
+<td>- Modern workflow<br>- Good dependency resolver<br>- Project management</td>
+<td>- Python-only<br>- Learning curve<br>- Can be slow</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="get-more-control-using-containers" class="level2">
+<h2 class="anchored" data-anchor-id="get-more-control-using-containers">Get more control using containers</h2>
+<p>Containers offer a higher level of isolation and reproducibility by packaging not just the dependencies, but the entire runtime environment. Two popular containerization solutions are:</p>
+<ul>
+<li><strong>Docker</strong>: Industry standard for containerization, suitable for development and testing
+<ul>
+<li>Creates lightweight, portable environments</li>
+<li>Extensive ecosystem of pre-built images (Dockerhub)</li>
+<li>Great for CI/CD pipelines</li>
+</ul></li>
+<li><strong>Singularity/Apptainer</strong>: Designed for HPC and scientific computing (no root required)
+<ul>
+<li>Better security model for shared systems</li>
+<li>Native support for HPC workloads</li>
+<li>Seamless conversion from Docker containers</li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Since we don’t have root rights on our server, we’re going to use apptainers in connection with singularity images. But this is not a problem - we still can use Docker images after conversion to singularity.</p>
+</div>
+</div>
+<section id="source" class="level3">
+<h3 class="anchored" data-anchor-id="source">Source</h3>
+<p>There are many ways how to get a container:</p>
+<ol type="1">
+<li>Pull from container registry (<a href="https://hub.docker.com/">DockerHub</a>)</li>
+<li>Convert Docker image to Singularity</li>
+<li>Build from definition file</li>
+<li>Construct container using Wave (<a href="https://seqera.io/containers/">Sequera</a>)</li>
+</ol>
+</section>
+<section id="creating-the-container" class="level3">
+<h3 class="anchored" data-anchor-id="creating-the-container">Creating the container</h3>
+<p>We can use the following command to create our first container:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">apptainer</span> pull <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span>name.sif<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span>link_to_container<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span></span></code></pre></div></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note, it is better to use specific version in the file name.</p>
+</div>
+</div>
+</section>
+<section id="run-tools-within-a-container" class="level3">
+<h3 class="anchored" data-anchor-id="run-tools-within-a-container">Run tools within a container</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">Running ‘from the outside’</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">Running ‘from the inside’</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
+<p>Run the command inside the container (good for pipelines):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">apptainer</span> exec <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span>name-of-container<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span>command<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span></span></code></pre></div></div>
+</div>
+<div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
+<p>Run in interactive mode (good for debugging):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">apptainer</span> shell <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span>name-of-container<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span></span></code></pre></div></div>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>pixi</category>
+  <category>docker</category>
+  <category>apptainer</category>
+  <category>qc</category>
+  <guid>https://kos-danilov.github.io/posts/pixi_containers/</guid>
+  <pubDate>Tue, 07 Oct 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://kos-danilov.github.io/posts/pixi_containers/image.svg" medium="image" type="image/svg+xml"/>
+</item>
 <item>
   <title>How to make a quarto blog</title>
   <dc:creator>Konstantin Danilov</dc:creator>
