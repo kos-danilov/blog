@@ -4,7 +4,7 @@ title: "Running reproducible analysis using pixi or containers for environment
 author: "Konstantin Danilov"
 date: "2025-10-07"
 categories: [pixi, containers, apptainer]
-image: "image.svg"
+image: "image.png"
 ---
 
 Learn how to manage dependencies and share your analysis environment with others using pixi and containers.

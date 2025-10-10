@@ -1,123 +1,34 @@
 ---
-title: "Standartised nf-core"
+title: "Standartised nf-core pipelines"
 author: "Konstantin Danilov"
 date: "2025-10-09"
-categories: [nextflow]
+categories: [nextflow, nf-core]
 image: "image.png"
 ---
 
-**Nextflow** is a workflow management system that simplifies running complex data analyses across different environments including laptops, HPC clusters and the cloud.  
+If you have a common task for NGS data processing - check this out.
 
-Built on the dataflow programming model, it allows tasks to execute in parallel and ensures reproducibility and scalability.  
+In most cases with common data types and analyses, you don't need to create a workflow from scratch. The Nextflow community has created many pipelines that are highly reproducible, versioned, and utilize containers or Conda environments:
 
-::: {.callout-tip}
-Nextflow uses a **dataflow programming model**, where process execution is triggered by the availability of input data.  
-Each process runs independently, enabling **implicit parallelism** and **deterministic workflow behavior**.  
-:::
-
-## Defenitions
-
-In Nextflow, workflows are built from two core components: processes and channels.
-
-- **Processes** define individual computational tasks, each has its own script, input, and output. They are isolated and can run in parallel.
-
-- **Channels** are the data connectors between processes.  
-  They define how data moves through the workflow, enabling dynamic and asynchronous execution.
-
-![Channels and processes](channels_processes.png)
-
-Chanel can be created using [channel factories](https://www.nextflow.io/docs/latest/reference/channel.html#channel-factory) and modified during execution of the workdlow using [operators](https://www.nextflow.io/docs/latest/reference/operator.html#operator-page)
-
-## Workflow
-
-Typical *.nf file looks like this:
-
-```{.bash}
-#!/usr/bin/env nextflow
-
-// Parameters & Settings
-params.reads = "data/*.fastq"
-params.ref   = "data/genome.fa"
-params.outdir = "results"
-
-// Imports & Libraries
-include { QC } from './modules/qc.nf'
-include { ALIGN } from './modules/align.nf'
-include { REPORT } from './modules/report.nf'
-
-// Custom Functions
-def sample_id(path) {
-    return path.baseName.replace('.fastq', '')
-}
-
-// Processes
-process PROCESS_NAME{
-    // directives
-    container
-    publishDir "${params.outdir}/qc", mode: 'copy'
-
-    input:
-      val x
-      path y
-      tuple z
-
-    output:
-      tuple val x, path f
-    
-    script:
-      // can be a script from bin folder
-      fastqc ...
-
-}
-
-...
-
-workflow {
-    // Channel creation
-    Channel
-    .fromPath(params.reads)
-    .map { file -> tuple(sample_id(file), file) }
-    .set { reads_ch }
-
-    // workflow itself 
-    qc_results = QC(reads_ch)
-    bam_files  = ALIGN(qc_results)
-    ...
-}
-```
-
-In order to run the script we need to have a specific version of the Nextflow pre-installed into enviroment. Following CLI interface can be used for running the pipeline:
-
-```{.bash}
-nextflow run <pipeline> [options] \
- [--params-file <file>] \
- [--<param> <value>] \
- [-profile <profile>] \
- [-resume] \
- [-with-docker|-with-singularity]
-```
-After execution nextflow create a lot of files in the work directory. These files can be reused using -resume option in case of repetitive executions. After some time work directory can be cleaned in a way:
-
-```{.bash}
-nextflow clean <pipeline> [options] [--work-dir <dir>] [-f]
-```
+![nf-core pipelines](pipelines.png)
 
 ::: {.callout-tip}
-Read more about CLI nextflow commands [here](https://www.nextflow.io/docs/latest/reference/cli.html)
+You can ensure reproducibility by using a specific version of the pipeline. While there is sometimes limited flexibility in the tool parameters, you can address this by editing specific modules of the pipelines locally.
 :::
 
-## Comparison with other pipeline managers
+To configure the pipeline, you should consult the webpage of the corresponding workflow. However, in general, a few key items need to be set up before starting:
 
-One can choose between various workflow managers:
+- Pipeline and version
+- Configuration profile for your executor
+- Workflow parameters (including input tables, etc.)
 
-| Feature                  | Nextflow                              | Snakemake                        | CWL (Common Workflow Language)        |
-|--------------------------|---------------------------------------|----------------------------------|--------------------------------------|
-| **Language**             | Groovy                                | Python                           | YAML/JSON spec                        |
-| **Parallelism**          | Dataflow (tasks run when input ready) | Explicit dependencies in rules   | DAG (tasks run according to DAG)      |
-| **Reproducibility**      | Excellent: containers & caching       | Very good: conda & containers    | High: strict spec & container support |
-| **Where it runs**        | Local, HPC, cloud, Kubernetes         | Local, HPC (cloud possible)     | HPC & cloud via execution engines     |
-| **Containers**           | Docker, Singularity, Podman           | Docker, Singularity              | Docker, Singularity                   |
-| **Ease of use**          | Moderate (Groovy DSL learning curve)  | Easy if you know Python          | Steeper, verbose YAML                  |
-| **Portability**          | Very high                             | Medium                           | High                                  |
-| **Community**            | Big                                   | Medium                           | ???                 |
+::: {.callout-important}
+These pipelines are the result of countless hours of open-source work and collaboration, so always remember to cite them properly.
+:::
+
+There are many ways to learn more about Nextflow and the community:
+
+- [Slack](https://nextflow.slack.com/join/shared_invite/zt-371z9ruz4-jh0KZkieJ2ZNIz2KhVDbFw#/shared-invite/email)
+- [Training](https://training.nextflow.io/latest/)
+- [Sequera AI](https://seqera.io/ask-ai/chat?__hstc=247481240.7db821609d6685cac05bfd76bdd93c85.1759402646204.1760100401349.1760121036788.5&__hssc=247481240.2.1760121036788&__hsfp=1973734757)
 

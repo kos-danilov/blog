@@ -6,7 +6,7 @@ categories: [nextflow, containers]
 image: "image.png"
 ---
 
-**Nextflow** is a workflow management system that simplifies running complex data analyses across different environments including laptops, HPC clusters and the cloud.  
+Nextflow is a workflow management system that simplifies running complex data analyses across different environments including laptops, HPC clusters and the cloud.  
 
 Built on the dataflow programming model, it allows tasks to execute in parallel and ensures reproducibility and scalability.  
 
