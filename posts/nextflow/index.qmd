@@ -30,7 +30,7 @@ Chanel can be created using [channel factories](https://www.nextflow.io/docs/lat
 
 ## Workflow
 
-Typical *.nf file looks like this:
+Typical `*.nf` file looks like this:
 
 ```{.bash}
 #!/usr/bin/env nextflow
@@ -86,7 +86,7 @@ workflow {
 }
 ```
 
-In order to run the script we need to have a specific version of the Nextflow pre-installed into enviroment. Following CLI interface can be used for running the pipeline:
+In order to run the script we need to have a specific version of the Nextflow pre-installed into enviroment. Following `CLI interface` can be used for running the pipeline:
 
 ```{.bash}
 nextflow run <pipeline> [options] \

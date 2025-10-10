@@ -31,7 +31,7 @@ It is a good practice to have a separate env for every project. In order to conf
 pixi init -c conda-forge -c bioconda
 ```
 
-If you want to add something (for example fastqc) to the env use:
+If you want to add something (for example `fastqc`) to the env use:
 
 ```{.bash}
 pixi add fastqc
@@ -69,12 +69,12 @@ Containers offer a higher level of isolation and reproducibility by packaging no
 - **Docker**: Industry standard for containerization, suitable for development and testing
     - Creates lightweight, portable environments
     - Extensive ecosystem of pre-built images (Dockerhub)
-    - Great for CI/CD pipelines
+    - Great for `CI/CD` pipelines
 
 - **Singularity/Apptainer**: Designed for HPC and scientific computing (no root required)
     - Better security model for shared systems
     - Native support for HPC workloads
-    - Seamless conversion from Docker containers
+    - Seamless conversion from `Docker` containers
 
 ::: {.callout-tip}
 Since we don't have root rights on our server, we're going to use apptainers in connection with singularity images. But this is not a problem - we still can use Docker images after conversion to singularity. 

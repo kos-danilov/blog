@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-250a0ad726c327aed60c1b8aba93cc6c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -223,7 +223,7 @@ Tip
 <h3 class="anchored" data-anchor-id="create-a-new-environment">Create a new environment</h3>
 <p>It is a good practice to have a separate env for every project. In order to configure a new env in the currect project directory use command:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> init <span class="at">-c</span> conda-forge <span class="at">-c</span> bioconda</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If you want to add something (for example fastqc) to the env use:</p>
+<p>If you want to add something (for example <code>fastqc</code>) to the env use:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> add fastqc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You can test it using:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run fastqc <span class="at">--help</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -292,13 +292,13 @@ Tip
 <ul>
 <li>Creates lightweight, portable environments</li>
 <li>Extensive ecosystem of pre-built images (Dockerhub)</li>
-<li>Great for CI/CD pipelines</li>
+<li>Great for <code>CI/CD</code> pipelines</li>
 </ul></li>
 <li><strong>Singularity/Apptainer</strong>: Designed for HPC and scientific computing (no root required)
 <ul>
 <li>Better security model for shared systems</li>
 <li>Native support for HPC workloads</li>
-<li>Seamless conversion from Docker containers</li>
+<li>Seamless conversion from <code>Docker</code> containers</li>
 </ul></li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">

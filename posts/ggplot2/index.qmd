@@ -6,16 +6,16 @@ categories: [R, ggplot2, visalization]
 image: "image.png"
 ---
 
-ggplot2 is the best R tool for making charts and graphs. Let's look at a quick example to see how it works when you make adjustments.
+`ggplot2` is the best R tool for making charts and graphs. Let's look at a quick example to see how it works when you make adjustments.
 
-The power of ggplot2 stems from the Grammar of Graphics philosophy, which allows you to build any plot by defining mappings and adding visual components layer by layer. This approach ensures high reproducibility and customization by giving you explicit control over every element. The primary layers of control are:
+The power of `ggplot2` stems from the Grammar of Graphics philosophy, which allows you to build any plot by defining mappings and adding visual components layer by layer. This approach ensures high reproducibility and customization by giving you explicit control over every element. The primary layers of control are:
 
-- **Data & Aesthetics** (aes()): Linking your data variables to visual properties (like position, color, and size).
-- **Geometric Objects** (geom_*): The visible markers (points, bars, lines) that represent the data.
-- **Statistical Transformations** (stat_*): Used to summarize or model the data (e.g., smoothing or counting) before plotting.
-- **Scales** (scale_*): Fine-tunes how the aesthetic mappings are rendered, controlling axis breaks, limits, and color palettes.
+- **Data & Aesthetics** (aes()): Linking your data variables to visual properties (like `position`, `color`, and `size`).
+- **Geometric Objects** (geom_*): The visible markers (`points`, `bars`, `lines`) that represent the data.
+- **Statistical Transformations** (stat_*): Used to summarize or model the data (e.g., `smoothing` or `counting`) before plotting.
+- **Scales** (scale_*): Fine-tunes how the aesthetic mappings are rendered, controlling axis `breaks`, `limits`, and `color palettes`.
 - **Facets** (facet_*): A powerful tool for splitting the visualization into multiple panels for easy group comparisons.
-- **Themes & Coordinates** (theme_*): Controls the non-data appearance (fonts, grid lines) and the plot's spatial layout.
+- **Themes & Coordinates** (theme_*): Controls the non-data appearance (`fonts`, `grid lines`) and the plot's spatial layout.
 
 ![ggplot2 components](ggplot2.png)
 
@@ -25,7 +25,7 @@ Using following [dataset]((https://www.dropbox.com/s/7imn0eoey9ckxh5/data_econom
 
 ![The Economist plot](economist.png)
 
-Original code by Raukr. Main components:
+Original code by `Raukr`. Main components:
 
 ```{.bash}
 p <- ggplot(ec,aes(x=CPI,y=HDI,color=Region))+
@@ -79,7 +79,7 @@ p
 ![plot4](plot4.png)
 
 ::: {.callout-tip}
-Sometimes it's faster and more convenient to post-process vector images after saving them from ggplot2 than to set all the parameters within the R code. However, you can save and reuse "standard" themes by keeping them in a separate R script file.
+Sometimes it's faster and more convenient to post-process vector images after saving them from `ggplot2` than to set all the parameters within the R code. However, you can save and reuse "standard" themes by keeping them in a separate R script file.
 :::
 
 There are many R packages built on top of ggplot2 that simplify visualization tasks while inheriting its core logic. You can find some of them listed [here](https://exts.ggplot2.tidyverse.org/gallery/)

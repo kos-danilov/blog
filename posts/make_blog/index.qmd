@@ -51,7 +51,7 @@ This post contains instruction about how to make your first post using Quarto bl
 4. Write your content using markdown
 5. Preview changes:
     - Click the "Preview" button in the top right corner
-    - Or use Command Palette (Ctrl+Shift+P / Cmd+Shift+P) and type "Quarto: Preview"
+    - Or use Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) and type "Quarto: Preview"
 
 ## Publishing
 

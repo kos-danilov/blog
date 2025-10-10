@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kos-danilov.github.io/about.html</loc>
-    <lastmod>2025-10-10T19:53:43.454Z</lastmod>
+    <lastmod>2025-10-10T19:54:23.907Z</lastmod>
   </url>
   <url>
     <loc>https://kos-danilov.github.io/posts/make_blog/index.html</loc>
-    <lastmod>2025-10-06T11:51:18.803Z</lastmod>
+    <lastmod>2025-10-10T19:57:27.394Z</lastmod>
   </url>
   <url>
     <loc>https://kos-danilov.github.io/posts/post-with-code/index.html</loc>
@@ -22,11 +22,11 @@
   </url>
   <url>
     <loc>https://kos-danilov.github.io/posts/pixi_containers/index.html</loc>
-    <lastmod>2025-10-10T19:05:36.335Z</lastmod>
+    <lastmod>2025-10-10T19:58:38.463Z</lastmod>
   </url>
   <url>
     <loc>https://kos-danilov.github.io/posts/nextflow/index.html</loc>
-    <lastmod>2025-10-10T18:31:52.004Z</lastmod>
+    <lastmod>2025-10-10T19:59:44.254Z</lastmod>
   </url>
   <url>
     <loc>https://kos-danilov.github.io/posts/nf_core/index.html</loc>
@@ -34,6 +34,6 @@
   </url>
   <url>
     <loc>https://kos-danilov.github.io/posts/ggplot2/index.html</loc>
-    <lastmod>2025-10-10T19:41:34.020Z</lastmod>
+    <lastmod>2025-10-10T20:01:30.201Z</lastmod>
   </url>
 </urlset>

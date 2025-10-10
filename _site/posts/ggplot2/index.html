@@ -195,15 +195,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>ggplot2 is the best R tool for making charts and graphs. Let’s look at a quick example to see how it works when you make adjustments.</p>
-<p>The power of ggplot2 stems from the Grammar of Graphics philosophy, which allows you to build any plot by defining mappings and adding visual components layer by layer. This approach ensures high reproducibility and customization by giving you explicit control over every element. The primary layers of control are:</p>
+<p><code>ggplot2</code> is the best R tool for making charts and graphs. Let’s look at a quick example to see how it works when you make adjustments.</p>
+<p>The power of <code>ggplot2</code> stems from the Grammar of Graphics philosophy, which allows you to build any plot by defining mappings and adding visual components layer by layer. This approach ensures high reproducibility and customization by giving you explicit control over every element. The primary layers of control are:</p>
 <ul>
-<li><strong>Data &amp; Aesthetics</strong> (aes()): Linking your data variables to visual properties (like position, color, and size).</li>
-<li><strong>Geometric Objects</strong> (geom_*): The visible markers (points, bars, lines) that represent the data.</li>
-<li><strong>Statistical Transformations</strong> (stat_*): Used to summarize or model the data (e.g., smoothing or counting) before plotting.</li>
-<li><strong>Scales</strong> (scale_*): Fine-tunes how the aesthetic mappings are rendered, controlling axis breaks, limits, and color palettes.</li>
+<li><strong>Data &amp; Aesthetics</strong> (aes()): Linking your data variables to visual properties (like <code>position</code>, <code>color</code>, and <code>size</code>).</li>
+<li><strong>Geometric Objects</strong> (geom_*): The visible markers (<code>points</code>, <code>bars</code>, <code>lines</code>) that represent the data.</li>
+<li><strong>Statistical Transformations</strong> (stat_*): Used to summarize or model the data (e.g., <code>smoothing</code> or <code>counting</code>) before plotting.</li>
+<li><strong>Scales</strong> (scale_*): Fine-tunes how the aesthetic mappings are rendered, controlling axis <code>breaks</code>, <code>limits</code>, and <code>color palettes</code>.</li>
 <li><strong>Facets</strong> (facet_*): A powerful tool for splitting the visualization into multiple panels for easy group comparisons.</li>
-<li><strong>Themes &amp; Coordinates</strong> (theme_*): Controls the non-data appearance (fonts, grid lines) and the plot’s spatial layout.</li>
+<li><strong>Themes &amp; Coordinates</strong> (theme_*): Controls the non-data appearance (<code>fonts</code>, <code>grid lines</code>) and the plot’s spatial layout.</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -220,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption>The Economist plot</figcaption>
 </figure>
 </div>
-<p>Original code by Raukr. Main components:</p>
+<p>Original code by <code>Raukr</code>. Main components:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">p</span> <span class="op">&lt;</span>- ggplot<span class="er">(</span><span class="ex">ec,aes</span><span class="er">(</span><span class="va">x</span><span class="op">=</span>CPI,y=HDI,color=Region<span class="kw">))</span><span class="ex">+</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>      <span class="ex">geom_smooth</span><span class="er">(</span><span class="ex">aes</span><span class="er">(</span><span class="va">fill</span><span class="op">=</span><span class="st">"red"</span><span class="kw">)</span><span class="ex">,method=</span><span class="st">"lm"</span><span class="ex">,formula=y~poly</span><span class="er">(</span><span class="ex">x,2</span><span class="kw">)</span><span class="ex">,se=F,color=</span><span class="st">"red"</span><span class="ex">,size=0.6</span><span class="kw">)</span><span class="ex">+</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>      <span class="ex">geom_point</span><span class="er">(</span><span class="va">shape</span><span class="op">=</span>21,size=3,stroke=0.8,fill=<span class="st">"white"</span><span class="kw">)</span></span>
@@ -285,7 +285,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Sometimes it’s faster and more convenient to post-process vector images after saving them from ggplot2 than to set all the parameters within the R code. However, you can save and reuse “standard” themes by keeping them in a separate R script file.</p>
+<p>Sometimes it’s faster and more convenient to post-process vector images after saving them from <code>ggplot2</code> than to set all the parameters within the R code. However, you can save and reuse “standard” themes by keeping them in a separate R script file.</p>
 </div>
 </div>
 <p>There are many R packages built on top of ggplot2 that simplify visualization tasks while inheriting its core logic. You can find some of them listed <a href="https://exts.ggplot2.tidyverse.org/gallery/">here</a></p>
