@@ -10,7 +10,602 @@
 <atom:link href="https://kos-danilov.github.io/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog built with Quarto</description>
 <generator>quarto-1.8.24</generator>
-<lastBuildDate>Wed, 08 Oct 2025 22:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 09 Oct 2025 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>ggplot2 for advanced visalization</title>
+  <dc:creator>Konstantin Danilov</dc:creator>
+  <link>https://kos-danilov.github.io/posts/ggplot2/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>ggplot2 is the best R tool for making charts and graphs. Let’s look at a quick example to see how it works when you make adjustments.</p>
+<p>The power of ggplot2 stems from the Grammar of Graphics philosophy, which allows you to build any plot by defining mappings and adding visual components layer by layer. This approach ensures high reproducibility and customization by giving you explicit control over every element. The primary layers of control are:</p>
+<ul>
+<li><strong>Data &amp; Aesthetics</strong> (aes()): Linking your data variables to visual properties (like position, color, and size).</li>
+<li><strong>Geometric Objects</strong> (geom_*): The visible markers (points, bars, lines) that represent the data.</li>
+<li><strong>Statistical Transformations</strong> (stat_*): Used to summarize or model the data (e.g., smoothing or counting) before plotting.</li>
+<li><strong>Scales</strong> (scale_*): Fine-tunes how the aesthetic mappings are rendered, controlling axis breaks, limits, and color palettes.</li>
+<li><strong>Facets</strong> (facet_*): A powerful tool for splitting the visualization into multiple panels for easy group comparisons.</li>
+<li><strong>Themes &amp; Coordinates</strong> (theme_*): Controls the non-data appearance (fonts, grid lines) and the plot’s spatial layout.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://kos-danilov.github.io/posts/ggplot2/ggplot2.png" class="img-fluid figure-img"></p>
+<figcaption>ggplot2 components</figcaption>
+</figure>
+</div>
+<section id="economist-scatterplot" class="level2">
+<h2 class="anchored" data-anchor-id="economist-scatterplot">Economist Scatterplot</h2>
+<p>Using following <a href="(https://www.dropbox.com/s/7imn0eoey9ckxh5/data_economist.csv?dl=1)">dataset</a> we can reproduce this figure:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://kos-danilov.github.io/posts/ggplot2/economist.png" class="img-fluid figure-img"></p>
+<figcaption>The Economist plot</figcaption>
+</figure>
+</div>
+<p>Original code by Raukr. Main components:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">p</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span>- ggplot<span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">ec,aes</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">x</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>CPI,y=HDI,color=Region<span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">))</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-2">      <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">geom_smooth</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">aes</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">fill</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"red"</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,method=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"lm"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,formula=y~poly</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">x,2</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,se=F,color=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"red"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,size=0.6</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-3">      <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">geom_point</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">shape</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>21,size=3,stroke=0.8,fill=<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"white"</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span></span>
+<span id="cb1-4"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">p</span></span></code></pre></div></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://kos-danilov.github.io/posts/ggplot2/plot1.png" class="img-fluid figure-img"></p>
+<figcaption>plot1</figcaption>
+</figure>
+</div>
+<p>Text and labels:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">library</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">ggrepel</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span></span>
+<span id="cb2-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">library</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">extrafont</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span></span>
+<span id="cb2-3"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">font_import</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">pattern</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Gidole"</span>,prompt=FALSE<span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span></span>
+<span id="cb2-4"></span>
+<span id="cb2-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">labels</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span>- c<span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Congo"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Afghanistan"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sudan"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Myanmar"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Iraq"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Venezuela"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Russia"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Argentina"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Brazil"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Italy"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"South Africa"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Cape Verde"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Bhutan"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Botswana"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Britian"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"New Zealand"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Greece"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"China"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"India"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Rwanda"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Spain"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"France"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"United States"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Japan"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Norway"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Singapore"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Barbados"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Germany"</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span></span>
+<span id="cb2-6"></span>
+<span id="cb2-7"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">p</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span>- p+geom_text_repel<span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">data</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>subset<span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">ec,Country</span> %in% labels<span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,aes</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">label</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>Country<span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-8">                       <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">color</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"black"</span>,box.padding=unit<span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">1,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'lines'</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,segment.size=0.25,</span></span>
+<span id="cb2-9">                       <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">size</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>3,family=<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Gidole"</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span></span>
+<span id="cb2-10"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">p</span></span></code></pre></div></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://kos-danilov.github.io/posts/ggplot2/plot2.png" class="img-fluid figure-img"></p>
+<figcaption>plot2</figcaption>
+</figure>
+</div>
+<p>Axes and scale colors:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">p</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span>- p+scale_x_continuous<span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">name</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Corruption Perceptions Index, 2011 (10=least corrupt)"</span>,</span>
+<span id="cb3-2">                          <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">breaks</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>1:10,limits=c<span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">1,10</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">))</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-3">      <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">scale_y_continuous</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">name</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Human Development Index, 2011 (1=best)"</span>,</span>
+<span id="cb3-4">                         <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">breaks</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>seq<span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">from</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>0,to=1,by=0.1<span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,limits=c</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">0.2,1</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">))</span></span>
+<span id="cb3-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">p</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span>- p+scale_color_manual<span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">values</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>c<span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#23576E"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#099FDB"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#29B00E"</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#208F84"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#F55840"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#924F3E"</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">))</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-6">       <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">scale_fill_manual</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">name</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"trend"</span>,values=<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"red"</span>,labels=expression<span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">R^2,</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"=52%"</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)))</span></span>
+<span id="cb3-7"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">p</span></span></code></pre></div></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://kos-danilov.github.io/posts/ggplot2/plot3.png" class="img-fluid figure-img"></p>
+<figcaption>plot3</figcaption>
+</figure>
+</div>
+<p>Title and theme:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">p</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span>- p+labs<span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">title</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Corruption and human development"</span>,</span>
+<span id="cb4-2">            <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">caption</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sources: Transparency International; UN Human Development Report"</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span></span>
+<span id="cb4-3"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">p</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span>- p+guides<span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">color</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>guide_legend<span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">nrow</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>1<span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">))</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-4">       <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">theme_bw</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">base_family</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Gidole"</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-5">       <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">theme</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">legend.position=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"top"</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span></span>
+<span id="cb4-6"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">p</span></span></code></pre></div></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://kos-danilov.github.io/posts/ggplot2/plot4.png" class="img-fluid figure-img"></p>
+<figcaption>plot4</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sometimes it’s faster and more convenient to post-process vector images after saving them from ggplot2 than to set all the parameters within the R code. However, you can save and reuse “standard” themes by keeping them in a separate R script file.</p>
+</div>
+</div>
+<p>There are many R packages built on top of ggplot2 that simplify visualization tasks while inheriting its core logic. You can find some of them listed <a href="https://exts.ggplot2.tidyverse.org/gallery/">here</a></p>
+
+
+</section>
+
+ ]]></description>
+  <category>R</category>
+  <category>ggplot2</category>
+  <category>visalization</category>
+  <guid>https://kos-danilov.github.io/posts/ggplot2/</guid>
+  <pubDate>Thu, 09 Oct 2025 22:00:00 GMT</pubDate>
+  <media:content url="https://kos-danilov.github.io/posts/ggplot2/image.png" medium="image" type="image/png" height="166" width="144"/>
+</item>
 <item>
   <title>Standartised nf-core pipelines</title>
   <dc:creator>Konstantin Danilov</dc:creator>

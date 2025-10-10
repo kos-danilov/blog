@@ -53,7 +53,7 @@
     "href": "index.html",
     "title": "MedBioInfo Blog",
     "section": "",
-    "text": "Standartised nf-core pipelines\n\n\n\nnextflow\n\nnf-core\n\n\n\n\n\n\n\n\n\nOct 9, 2025\n\n\nKonstantin Danilov\n\n\n\n\n\n\n\n\n\n\n\n\nNextflow for pipeline managment\n\n\n\nnextflow\n\ncontainers\n\n\n\n\n\n\n\n\n\nOct 8, 2025\n\n\nKonstantin Danilov\n\n\n\n\n\n\n\n\n\n\n\n\nRunning reproducible analysis using pixi or containers for environment management\n\n\n\npixi\n\ncontainers\n\napptainer\n\n\n\n\n\n\n\n\n\nOct 7, 2025\n\n\nKonstantin Danilov\n\n\n\n\n\n\n\n\n\n\n\n\nHow to make a quarto blog\n\n\n\nquarto\n\n\n\n\n\n\n\n\n\nOct 6, 2025\n\n\nKonstantin Danilov\n\n\n\n\n\nNo matching items"
+    "text": "ggplot2 for advanced visalization\n\n\n\nR\n\nggplot2\n\nvisalization\n\n\n\n\n\n\n\n\n\nOct 10, 2025\n\n\nKonstantin Danilov\n\n\n\n\n\n\n\n\n\n\n\n\nStandartised nf-core pipelines\n\n\n\nnextflow\n\nnf-core\n\n\n\n\n\n\n\n\n\nOct 9, 2025\n\n\nKonstantin Danilov\n\n\n\n\n\n\n\n\n\n\n\n\nNextflow for pipeline managment\n\n\n\nnextflow\n\ncontainers\n\n\n\n\n\n\n\n\n\nOct 8, 2025\n\n\nKonstantin Danilov\n\n\n\n\n\n\n\n\n\n\n\n\nRunning reproducible analysis using pixi or containers for environment management\n\n\n\npixi\n\ncontainers\n\napptainer\n\n\n\n\n\n\n\n\n\nOct 7, 2025\n\n\nKonstantin Danilov\n\n\n\n\n\n\n\n\n\n\n\n\nHow to make a quarto blog\n\n\n\nquarto\n\n\n\n\n\n\n\n\n\nOct 6, 2025\n\n\nKonstantin Danilov\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/pixi_containers/index.html",
@@ -180,5 +180,40 @@
     "title": "Standartised nf-core pipelines",
     "section": "Comparison with other pipeline managers",
     "text": "Comparison with other pipeline managers\nOne can choose between various workflow managers:\n\n\n\n\n\n\n\n\n\nFeature\nNextflow\nSnakemake\nCWL (Common Workflow Language)\n\n\n\n\nLanguage\nGroovy\nPython\nYAML/JSON spec\n\n\nParallelism\nDataflow (tasks run when input ready)\nExplicit dependencies in rules\nDAG (tasks run according to DAG)\n\n\nReproducibility\nExcellent: containers & caching\nVery good: conda & containers\nHigh: strict spec & container support\n\n\nWhere it runs\nLocal, HPC, cloud, Kubernetes\nLocal, HPC (cloud possible)\nHPC & cloud via execution engines\n\n\nContainers\nDocker, Singularity, Podman\nDocker, Singularity\nDocker, Singularity\n\n\nEase of use\nModerate (Groovy DSL learning curve)\nEasy if you know Python\nSteeper, verbose YAML\n\n\nPortability\nVery high\nMedium\nHigh\n\n\nCommunity\nBig\nMedium\n???"
+  },
+  {
+    "objectID": "posts/ggplot2/index.html",
+    "href": "posts/ggplot2/index.html",
+    "title": "ggplot2 for advanced visalization",
+    "section": "",
+    "text": "ggplot2 is the best R tool for making charts and graphs. Let’s look at a quick example to see how it works when you make adjustments.\nThe power of ggplot2 stems from the Grammar of Graphics philosophy, which allows you to build any plot by defining mappings and adding visual components layer by layer. This approach ensures high reproducibility and customization by giving you explicit control over every element. The primary layers of control are:"
+  },
+  {
+    "objectID": "posts/ggplot2/index.html#defenitions",
+    "href": "posts/ggplot2/index.html#defenitions",
+    "title": "ggplot2 for advanced visalization",
+    "section": "Defenitions",
+    "text": "Defenitions\nIn Nextflow, workflows are built from two core components: processes and channels.\n\nProcesses define individual computational tasks, each has its own script, input, and output. They are isolated and can run in parallel.\nChannels are the data connectors between processes.\nThey define how data moves through the workflow, enabling dynamic and asynchronous execution.\n\n\n\n\nChannels and processes\n\n\nChanel can be created using channel factories and modified during execution of the workdlow using operators"
+  },
+  {
+    "objectID": "posts/ggplot2/index.html#workflow",
+    "href": "posts/ggplot2/index.html#workflow",
+    "title": "ggplot2 for advanced visalization",
+    "section": "Workflow",
+    "text": "Workflow\nTypical *.nf file looks like this:\n#!/usr/bin/env nextflow\n\n// Parameters & Settings\nparams.reads = \"data/*.fastq\"\nparams.ref   = \"data/genome.fa\"\nparams.outdir = \"results\"\n\n// Imports & Libraries\ninclude { QC } from './modules/qc.nf'\ninclude { ALIGN } from './modules/align.nf'\ninclude { REPORT } from './modules/report.nf'\n\n// Custom Functions\ndef sample_id(path) {\n    return path.baseName.replace('.fastq', '')\n}\n\n// Processes\nprocess PROCESS_NAME{\n    // directives\n    container\n    publishDir \"${params.outdir}/qc\", mode: 'copy'\n\n    input:\n      val x\n      path y\n      tuple z\n\n    output:\n      tuple val x, path f\n    \n    script:\n      // can be a script from bin folder\n      fastqc ...\n\n}\n\n...\n\nworkflow {\n    // Channel creation\n    Channel\n    .fromPath(params.reads)\n    .map { file -&gt; tuple(sample_id(file), file) }\n    .set { reads_ch }\n\n    // workflow itself \n    qc_results = QC(reads_ch)\n    bam_files  = ALIGN(qc_results)\n    ...\n}\nIn order to run the script we need to have a specific version of the Nextflow pre-installed into enviroment. Following CLI interface can be used for running the pipeline:\nnextflow run &lt;pipeline&gt; [options] \\\n [--params-file &lt;file&gt;] \\\n [--&lt;param&gt; &lt;value&gt;] \\\n [-profile &lt;profile&gt;] \\\n [-resume] \\\n [-with-docker|-with-singularity]\nAfter execution nextflow create a lot of files in the work directory. These files can be reused using -resume option in case of repetitive executions. After some time work directory can be cleaned in a way:\nnextflow clean &lt;pipeline&gt; [options] [--work-dir &lt;dir&gt;] [-f]\n\n\n\n\n\n\nTip\n\n\n\nRead more about CLI nextflow commands here"
+  },
+  {
+    "objectID": "posts/ggplot2/index.html#comparison-with-other-pipeline-managers",
+    "href": "posts/ggplot2/index.html#comparison-with-other-pipeline-managers",
+    "title": "ggplot2 for advanced visalization",
+    "section": "Comparison with other pipeline managers",
+    "text": "Comparison with other pipeline managers\nOne can choose between various workflow managers:\n\n\n\n\n\n\n\n\n\nFeature\nNextflow\nSnakemake\nCWL (Common Workflow Language)\n\n\n\n\nLanguage\nGroovy\nPython\nYAML/JSON spec\n\n\nParallelism\nDataflow (tasks run when input ready)\nExplicit dependencies in rules\nDAG (tasks run according to DAG)\n\n\nReproducibility\nExcellent: containers & caching\nVery good: conda & containers\nHigh: strict spec & container support\n\n\nWhere it runs\nLocal, HPC, cloud, Kubernetes\nLocal, HPC (cloud possible)\nHPC & cloud via execution engines\n\n\nContainers\nDocker, Singularity, Podman\nDocker, Singularity\nDocker, Singularity\n\n\nEase of use\nModerate (Groovy DSL learning curve)\nEasy if you know Python\nSteeper, verbose YAML\n\n\nPortability\nVery high\nMedium\nHigh\n\n\nCommunity\nBig\nMedium\n???"
+  },
+  {
+    "objectID": "posts/ggplot2/index.html#economist-scatterplot",
+    "href": "posts/ggplot2/index.html#economist-scatterplot",
+    "title": "ggplot2 for advanced visalization",
+    "section": "Economist Scatterplot",
+    "text": "Economist Scatterplot\nUsing following dataset we can reproduce this figure:\n\n\n\nThe Economist plot\n\n\nOriginal code by Raukr. Main components:\np &lt;- ggplot(ec,aes(x=CPI,y=HDI,color=Region))+\n      geom_smooth(aes(fill=\"red\"),method=\"lm\",formula=y~poly(x,2),se=F,color=\"red\",size=0.6)+\n      geom_point(shape=21,size=3,stroke=0.8,fill=\"white\")\np\n\n\n\nplot1\n\n\nText and labels:\nlibrary(ggrepel)\nlibrary(extrafont)\nfont_import(pattern=\"Gidole\",prompt=FALSE)\n\nlabels &lt;- c(\"Congo\",\"Afghanistan\",\"Sudan\",\"Myanmar\",\"Iraq\",\"Venezuela\",\"Russia\",\"Argentina\",\"Brazil\",\"Italy\",\"South Africa\",\"Cape Verde\",\"Bhutan\",\"Botswana\",\"Britian\",\"New Zealand\",\"Greece\",\"China\",\"India\",\"Rwanda\",\"Spain\",\"France\",\"United States\",\"Japan\",\"Norway\",\"Singapore\",\"Barbados\",\"Germany\")\n\np &lt;- p+geom_text_repel(data=subset(ec,Country %in% labels),aes(label=Country),\n                       color=\"black\",box.padding=unit(1,'lines'),segment.size=0.25,\n                       size=3,family=\"Gidole\")\np\n\n\n\nplot2\n\n\nAxes and scale colors:\np &lt;- p+scale_x_continuous(name=\"Corruption Perceptions Index, 2011 (10=least corrupt)\",\n                          breaks=1:10,limits=c(1,10))+\n      scale_y_continuous(name=\"Human Development Index, 2011 (1=best)\",\n                         breaks=seq(from=0,to=1,by=0.1),limits=c(0.2,1))\np &lt;- p+scale_color_manual(values=c(\"#23576E\",\"#099FDB\",\"#29B00E\", \"#208F84\",\"#F55840\",\"#924F3E\"))+\n       scale_fill_manual(name=\"trend\",values=\"red\",labels=expression(paste(R^2,\"=52%\")))\np\n\n\n\nplot3\n\n\nTitle and theme:\np &lt;- p+labs(title=\"Corruption and human development\",\n            caption=\"Sources: Transparency International; UN Human Development Report\")\np &lt;- p+guides(color=guide_legend(nrow=1))+\n       theme_bw(base_family=\"Gidole\")+\n       theme(legend.position=\"top\")\np\n\n\n\nplot4\n\n\n\n\n\n\n\n\nTip\n\n\n\nSometimes it’s faster and more convenient to post-process vector images after saving them from ggplot2 than to set all the parameters within the R code. However, you can save and reuse “standard” themes by keeping them in a separate R script file.\n\n\nThere are many R packages built on top of ggplot2 that simplify visualization tasks while inheriting its core logic. You can find some of them listed here"
   }
 ]
