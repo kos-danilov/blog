@@ -53,7 +53,7 @@
     "href": "index.html",
     "title": "MedBioInfo Blog",
     "section": "",
-    "text": "Running reproducible analysis using pixi or containers for environment management\n\n\n\npixi\n\ndocker\n\napptainer\n\nqc\n\n\n\n\n\n\n\n\n\nOct 7, 2025\n\n\nKonstantin Danilov\n\n\n\n\n\n\n\n\n\n\n\n\nHow to make a quarto blog\n\n\n\nquarto\n\n\n\n\n\n\n\n\n\nOct 6, 2025\n\n\nKonstantin Danilov\n\n\n\n\n\nNo matching items"
+    "text": "Standartised nf-core\n\n\n\nnextflow\n\n\n\n\n\n\n\n\n\nOct 9, 2025\n\n\nKonstantin Danilov\n\n\n\n\n\n\n\n\n\n\n\n\nNextflow for pipeline managment\n\n\n\nnextflow\n\ncontainers\n\n\n\n\n\n\n\n\n\nOct 8, 2025\n\n\nKonstantin Danilov\n\n\n\n\n\n\n\n\n\n\n\n\nRunning reproducible analysis using pixi or containers for environment management\n\n\n\npixi\n\ncontainers\n\napptainer\n\n\n\n\n\n\n\n\n\nOct 7, 2025\n\n\nKonstantin Danilov\n\n\n\n\n\n\n\n\n\n\n\n\nHow to make a quarto blog\n\n\n\nquarto\n\n\n\n\n\n\n\n\n\nOct 6, 2025\n\n\nKonstantin Danilov\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/pixi_containers/index.html",
@@ -103,5 +103,82 @@
     "title": "Running reproducible analysis using pixi or containers for environment management",
     "section": "Get more control using containers",
     "text": "Get more control using containers\nContainers offer a higher level of isolation and reproducibility by packaging not just the dependencies, but the entire runtime environment. Two popular containerization solutions are:\n\nDocker: Industry standard for containerization, suitable for development and testing\n\nCreates lightweight, portable environments\nExtensive ecosystem of pre-built images (Dockerhub)\nGreat for CI/CD pipelines\n\nSingularity/Apptainer: Designed for HPC and scientific computing (no root required)\n\nBetter security model for shared systems\nNative support for HPC workloads\nSeamless conversion from Docker containers\n\n\n\n\n\n\n\n\nTip\n\n\n\nSince we don’t have root rights on our server, we’re going to use apptainers in connection with singularity images. But this is not a problem - we still can use Docker images after conversion to singularity.\n\n\n\nSource\nThere are many ways how to get a container:\n\nPull from container registry (DockerHub)\nConvert Docker image to Singularity\nBuild from definition file\nConstruct container using Wave (Sequera)\n\n\n\nCreating the container\nWe can use the following command to create our first container:\napptainer pull &lt;name.sif&gt; &lt;link_to_container&gt;\n\n\n\n\n\n\nTip\n\n\n\nNote, it is better to use specific version in the file name.\n\n\n\n\nRun tools within a container\n\nRunning ‘from the outside’Running ‘from the inside’\n\n\nRun the command inside the container (good for pipelines):\napptainer exec &lt;name-of-container&gt; &lt;command&gt;\n\n\nRun in interactive mode (good for debugging):\napptainer shell &lt;name-of-container&gt;"
+  },
+  {
+    "objectID": "posts/nextflow/index.html",
+    "href": "posts/nextflow/index.html",
+    "title": "Nextflow for pipeline managment",
+    "section": "",
+    "text": "Nextflow is a workflow management system that simplifies running complex data analyses across different environments including laptops, HPC clusters and the cloud.\nBuilt on the dataflow programming model, it allows tasks to execute in parallel and ensures reproducibility and scalability."
+  },
+  {
+    "objectID": "posts/nextflow/index.html#creating-a-new-blog",
+    "href": "posts/nextflow/index.html#creating-a-new-blog",
+    "title": "Nextflow for pipeline managment",
+    "section": "Creating a new blog",
+    "text": "Creating a new blog\n\nOpen VSCode\nCreate a new blog project:\n\nPress Ctrl+Shift+P (Windows/Linux) or Cmd+Shift+P (Mac)\nType “Quarto: Create Project”\nSelect “Blog Project”\nChoose a directory for your blog\nEnter a title for your blog\n\nOpen the project:\n\nGo to File &gt; Open Folder\nSelect your blog directory\n\nPreview your blog:\n\nClick the “Preview” button in the top right corner of VSCode\nOr press Ctrl+Shift+P and type “Quarto: Preview”"
+  },
+  {
+    "objectID": "posts/nextflow/index.html#adding-a-new-post",
+    "href": "posts/nextflow/index.html#adding-a-new-post",
+    "title": "Nextflow for pipeline managment",
+    "section": "Adding a new post",
+    "text": "Adding a new post\n\nCreate a new post:\n\nRight-click on the posts folder\nSelect “New Folder”\nName it (e.g., “my-first-post”)\n\nCreate the post file:\n\nRight-click on your new folder\nSelect “New File”\nName it “index.qmd”\n\nAdd YAML header to your post:\n---\ntitle: \"My Post Title\"\nauthor: \"Your Name\"\ndate: \"2025-10-06\"\ncategories: [news, analysis]\n---\nWrite your content using markdown\nPreview changes:\n\nClick the “Preview” button in the top right corner\nOr use Command Palette (Ctrl+Shift+P / Cmd+Shift+P) and type “Quarto: Preview”"
+  },
+  {
+    "objectID": "posts/nextflow/index.html#publishing",
+    "href": "posts/nextflow/index.html#publishing",
+    "title": "Nextflow for pipeline managment",
+    "section": "Publishing",
+    "text": "Publishing\n\nRender your post\nDeploy to GitHub Pages or your preferred hosting service"
+  },
+  {
+    "objectID": "posts/nextflow/index.html#defenitions",
+    "href": "posts/nextflow/index.html#defenitions",
+    "title": "Nextflow for pipeline managment",
+    "section": "Defenitions",
+    "text": "Defenitions\nIn Nextflow, workflows are built from two core components: processes and channels.\n\nProcesses define individual computational tasks, each has its own script, input, and output. They are isolated and can run in parallel.\nChannels are the data connectors between processes.\nThey define how data moves through the workflow, enabling dynamic and asynchronous execution.\n\n\n\n\nChannels and processes\n\n\nChanel can be created using channel factories and modified during execution of the workdlow using operators"
+  },
+  {
+    "objectID": "posts/nextflow/index.html#workflow",
+    "href": "posts/nextflow/index.html#workflow",
+    "title": "Nextflow for pipeline managment",
+    "section": "Workflow",
+    "text": "Workflow\nTypical *.nf file looks like this:\n#!/usr/bin/env nextflow\n\n// Parameters & Settings\nparams.reads = \"data/*.fastq\"\nparams.ref   = \"data/genome.fa\"\nparams.outdir = \"results\"\n\n// Imports & Libraries\ninclude { QC } from './modules/qc.nf'\ninclude { ALIGN } from './modules/align.nf'\ninclude { REPORT } from './modules/report.nf'\n\n// Custom Functions\ndef sample_id(path) {\n    return path.baseName.replace('.fastq', '')\n}\n\n// Processes\nprocess PROCESS_NAME{\n    // directives\n    container\n    publishDir \"${params.outdir}/qc\", mode: 'copy'\n\n    input:\n      val x\n      path y\n      tuple z\n\n    output:\n      tuple val x, path f\n    \n    script:\n      // can be a script from bin folder\n      fastqc ...\n\n}\n\n...\n\nworkflow {\n    // Channel creation\n    Channel\n    .fromPath(params.reads)\n    .map { file -&gt; tuple(sample_id(file), file) }\n    .set { reads_ch }\n\n    // workflow itself \n    qc_results = QC(reads_ch)\n    bam_files  = ALIGN(qc_results)\n    ...\n}\nIn order to run the script we need to have a specific version of the Nextflow pre-installed into enviroment. Following CLI interface can be used for running the pipeline:\nnextflow run &lt;pipeline&gt; [options] \\\n [--params-file &lt;file&gt;] \\\n [--&lt;param&gt; &lt;value&gt;] \\\n [-profile &lt;profile&gt;] \\\n [-resume] \\\n [-with-docker|-with-singularity]\nAfter execution nextflow create a lot of files in the work directory. These files can be reused using -resume option in case of repetitive executions. After some time work directory can be cleaned in a way:\nnextflow clean &lt;pipeline&gt; [options] [--work-dir &lt;dir&gt;] [-f]\n\n\n\n\n\n\nTip\n\n\n\nRead more about CLI nextflow commands here"
+  },
+  {
+    "objectID": "posts/nextflow/index.html#comparison-with-other-pipeline-managers",
+    "href": "posts/nextflow/index.html#comparison-with-other-pipeline-managers",
+    "title": "Nextflow for pipeline managment",
+    "section": "Comparison with other pipeline managers",
+    "text": "Comparison with other pipeline managers\nOne can choose between various workflow managers:\n\n\n\n\n\n\n\n\n\nFeature\nNextflow\nSnakemake\nCWL (Common Workflow Language)\n\n\n\n\nLanguage\nGroovy\nPython\nYAML/JSON spec\n\n\nParallelism\nDataflow (tasks run when input ready)\nExplicit dependencies in rules\nDAG (tasks run according to DAG)\n\n\nReproducibility\nExcellent: containers & caching\nVery good: conda & containers\nHigh: strict spec & container support\n\n\nWhere it runs\nLocal, HPC, cloud, Kubernetes\nLocal, HPC (cloud possible)\nHPC & cloud via execution engines\n\n\nContainers\nDocker, Singularity, Podman\nDocker, Singularity\nDocker, Singularity\n\n\nEase of use\nModerate (Groovy DSL learning curve)\nEasy if you know Python\nSteeper, verbose YAML\n\n\nPortability\nVery high\nMedium\nHigh\n\n\nCommunity\nBig\nMedium\n???"
+  },
+  {
+    "objectID": "posts/nf_core/index.html",
+    "href": "posts/nf_core/index.html",
+    "title": "Standartised nf-core",
+    "section": "",
+    "text": "Nextflow is a workflow management system that simplifies running complex data analyses across different environments including laptops, HPC clusters and the cloud.\nBuilt on the dataflow programming model, it allows tasks to execute in parallel and ensures reproducibility and scalability."
+  },
+  {
+    "objectID": "posts/nf_core/index.html#defenitions",
+    "href": "posts/nf_core/index.html#defenitions",
+    "title": "Standartised nf-core",
+    "section": "Defenitions",
+    "text": "Defenitions\nIn Nextflow, workflows are built from two core components: processes and channels.\n\nProcesses define individual computational tasks, each has its own script, input, and output. They are isolated and can run in parallel.\nChannels are the data connectors between processes.\nThey define how data moves through the workflow, enabling dynamic and asynchronous execution.\n\n\n\n\nChannels and processes\n\n\nChanel can be created using channel factories and modified during execution of the workdlow using operators"
+  },
+  {
+    "objectID": "posts/nf_core/index.html#workflow",
+    "href": "posts/nf_core/index.html#workflow",
+    "title": "Standartised nf-core",
+    "section": "Workflow",
+    "text": "Workflow\nTypical *.nf file looks like this:\n#!/usr/bin/env nextflow\n\n// Parameters & Settings\nparams.reads = \"data/*.fastq\"\nparams.ref   = \"data/genome.fa\"\nparams.outdir = \"results\"\n\n// Imports & Libraries\ninclude { QC } from './modules/qc.nf'\ninclude { ALIGN } from './modules/align.nf'\ninclude { REPORT } from './modules/report.nf'\n\n// Custom Functions\ndef sample_id(path) {\n    return path.baseName.replace('.fastq', '')\n}\n\n// Processes\nprocess PROCESS_NAME{\n    // directives\n    container\n    publishDir \"${params.outdir}/qc\", mode: 'copy'\n\n    input:\n      val x\n      path y\n      tuple z\n\n    output:\n      tuple val x, path f\n    \n    script:\n      // can be a script from bin folder\n      fastqc ...\n\n}\n\n...\n\nworkflow {\n    // Channel creation\n    Channel\n    .fromPath(params.reads)\n    .map { file -&gt; tuple(sample_id(file), file) }\n    .set { reads_ch }\n\n    // workflow itself \n    qc_results = QC(reads_ch)\n    bam_files  = ALIGN(qc_results)\n    ...\n}\nIn order to run the script we need to have a specific version of the Nextflow pre-installed into enviroment. Following CLI interface can be used for running the pipeline:\nnextflow run &lt;pipeline&gt; [options] \\\n [--params-file &lt;file&gt;] \\\n [--&lt;param&gt; &lt;value&gt;] \\\n [-profile &lt;profile&gt;] \\\n [-resume] \\\n [-with-docker|-with-singularity]\nAfter execution nextflow create a lot of files in the work directory. These files can be reused using -resume option in case of repetitive executions. After some time work directory can be cleaned in a way:\nnextflow clean &lt;pipeline&gt; [options] [--work-dir &lt;dir&gt;] [-f]\n\n\n\n\n\n\nTip\n\n\n\nRead more about CLI nextflow commands here"
+  },
+  {
+    "objectID": "posts/nf_core/index.html#comparison-with-other-pipeline-managers",
+    "href": "posts/nf_core/index.html#comparison-with-other-pipeline-managers",
+    "title": "Standartised nf-core",
+    "section": "Comparison with other pipeline managers",
+    "text": "Comparison with other pipeline managers\nOne can choose between various workflow managers:\n\n\n\n\n\n\n\n\n\nFeature\nNextflow\nSnakemake\nCWL (Common Workflow Language)\n\n\n\n\nLanguage\nGroovy\nPython\nYAML/JSON spec\n\n\nParallelism\nDataflow (tasks run when input ready)\nExplicit dependencies in rules\nDAG (tasks run according to DAG)\n\n\nReproducibility\nExcellent: containers & caching\nVery good: conda & containers\nHigh: strict spec & container support\n\n\nWhere it runs\nLocal, HPC, cloud, Kubernetes\nLocal, HPC (cloud possible)\nHPC & cloud via execution engines\n\n\nContainers\nDocker, Singularity, Podman\nDocker, Singularity\nDocker, Singularity\n\n\nEase of use\nModerate (Groovy DSL learning curve)\nEasy if you know Python\nSteeper, verbose YAML\n\n\nPortability\nVery high\nMedium\nHigh\n\n\nCommunity\nBig\nMedium\n???"
   }
 ]

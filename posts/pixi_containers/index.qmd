@@ -3,7 +3,7 @@ title: "Running reproducible analysis using pixi or containers for environment
     management"
 author: "Konstantin Danilov"
 date: "2025-10-07"
-categories: [pixi, docker, apptainer, qc]
+categories: [pixi, containers, apptainer]
 image: "image.svg"
 ---
 

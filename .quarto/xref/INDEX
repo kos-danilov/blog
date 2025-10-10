@@ -16,5 +16,11 @@
   },
   "posts/pixi_containers/index.qmd": {
     "index.html": "b9edbe01"
+  },
+  "posts/nextflow/index.qmd": {
+    "index.html": "4a786ff1"
+  },
+  "posts/nf_core/index.qmd": {
+    "index.html": "ee4e187b"
   }
 }
