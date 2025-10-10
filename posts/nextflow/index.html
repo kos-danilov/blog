@@ -228,7 +228,7 @@ They define how data moves through the workflow, enabling dynamic and asynchrono
 </section>
 <section id="workflow" class="level2">
 <h2 class="anchored" data-anchor-id="workflow">Workflow</h2>
-<p>Typical *.nf file looks like this:</p>
+<p>Typical <code>*.nf</code> file looks like this:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env nextflow</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">//</span> Parameters <span class="kw">&amp;</span> <span class="ex">Settings</span></span>
@@ -280,7 +280,7 @@ They define how data moves through the workflow, enabling dynamic and asynchrono
 <span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="ex">bam_files</span>  = ALIGN<span class="er">(</span><span class="ex">qc_results</span><span class="kw">)</span></span>
 <span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="ex">...</span></span>
 <span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>In order to run the script we need to have a specific version of the Nextflow pre-installed into enviroment. Following CLI interface can be used for running the pipeline:</p>
+<p>In order to run the script we need to have a specific version of the Nextflow pre-installed into enviroment. Following <code>CLI interface</code> can be used for running the pipeline:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run <span class="op">&lt;</span>pipeline<span class="op">&gt;</span> <span class="pp">[</span><span class="ss">options</span><span class="pp">]</span> <span class="dt">\</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a> [--params-file <span class="op">&lt;</span>file<span class="op">&gt;</span>] <span class="dt">\</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a> [--<span class="op">&lt;</span>param<span class="op">&gt;</span> <span class="op">&lt;</span>value<span class="op">&gt;</span>] <span class="dt">\</span></span>

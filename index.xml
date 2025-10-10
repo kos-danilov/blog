@@ -21,15 +21,15 @@
 
 
 
-<p>ggplot2 is the best R tool for making charts and graphs. Let’s look at a quick example to see how it works when you make adjustments.</p>
-<p>The power of ggplot2 stems from the Grammar of Graphics philosophy, which allows you to build any plot by defining mappings and adding visual components layer by layer. This approach ensures high reproducibility and customization by giving you explicit control over every element. The primary layers of control are:</p>
+<p><code>ggplot2</code> is the best R tool for making charts and graphs. Let’s look at a quick example to see how it works when you make adjustments.</p>
+<p>The power of <code>ggplot2</code> stems from the Grammar of Graphics philosophy, which allows you to build any plot by defining mappings and adding visual components layer by layer. This approach ensures high reproducibility and customization by giving you explicit control over every element. The primary layers of control are:</p>
 <ul>
-<li><strong>Data &amp; Aesthetics</strong> (aes()): Linking your data variables to visual properties (like position, color, and size).</li>
-<li><strong>Geometric Objects</strong> (geom_*): The visible markers (points, bars, lines) that represent the data.</li>
-<li><strong>Statistical Transformations</strong> (stat_*): Used to summarize or model the data (e.g., smoothing or counting) before plotting.</li>
-<li><strong>Scales</strong> (scale_*): Fine-tunes how the aesthetic mappings are rendered, controlling axis breaks, limits, and color palettes.</li>
+<li><strong>Data &amp; Aesthetics</strong> (aes()): Linking your data variables to visual properties (like <code>position</code>, <code>color</code>, and <code>size</code>).</li>
+<li><strong>Geometric Objects</strong> (geom_*): The visible markers (<code>points</code>, <code>bars</code>, <code>lines</code>) that represent the data.</li>
+<li><strong>Statistical Transformations</strong> (stat_*): Used to summarize or model the data (e.g., <code>smoothing</code> or <code>counting</code>) before plotting.</li>
+<li><strong>Scales</strong> (scale_*): Fine-tunes how the aesthetic mappings are rendered, controlling axis <code>breaks</code>, <code>limits</code>, and <code>color palettes</code>.</li>
 <li><strong>Facets</strong> (facet_*): A powerful tool for splitting the visualization into multiple panels for easy group comparisons.</li>
-<li><strong>Themes &amp; Coordinates</strong> (theme_*): Controls the non-data appearance (fonts, grid lines) and the plot’s spatial layout.</li>
+<li><strong>Themes &amp; Coordinates</strong> (theme_*): Controls the non-data appearance (<code>fonts</code>, <code>grid lines</code>) and the plot’s spatial layout.</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -46,7 +46,7 @@
 <figcaption>The Economist plot</figcaption>
 </figure>
 </div>
-<p>Original code by Raukr. Main components:</p>
+<p>Original code by <code>Raukr</code>. Main components:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
 background-color: null;
 font-style: inherit;">p</span> <span class="op" style="color: #5E5E5E;
@@ -590,7 +590,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Sometimes it’s faster and more convenient to post-process vector images after saving them from ggplot2 than to set all the parameters within the R code. However, you can save and reuse “standard” themes by keeping them in a separate R script file.</p>
+<p>Sometimes it’s faster and more convenient to post-process vector images after saving them from <code>ggplot2</code> than to set all the parameters within the R code. However, you can save and reuse “standard” themes by keeping them in a separate R script file.</p>
 </div>
 </div>
 <p>There are many R packages built on top of ggplot2 that simplify visualization tasks while inheriting its core logic. You can find some of them listed <a href="https://exts.ggplot2.tidyverse.org/gallery/">here</a></p>
@@ -716,7 +716,7 @@ They define how data moves through the workflow, enabling dynamic and asynchrono
 </section>
 <section id="workflow" class="level2">
 <h2 class="anchored" data-anchor-id="workflow">Workflow</h2>
-<p>Typical *.nf file looks like this:</p>
+<p>Typical <code>*.nf</code> file looks like this:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">#!/usr/bin/env nextflow</span></span>
@@ -950,7 +950,7 @@ font-style: inherit;">...</span></span>
 <span id="cb1-51"><span class="er" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">}</span></span></code></pre></div></div>
-<p>In order to run the script we need to have a specific version of the Nextflow pre-installed into enviroment. Following CLI interface can be used for running the pipeline:</p>
+<p>In order to run the script we need to have a specific version of the Nextflow pre-installed into enviroment. Following <code>CLI interface</code> can be used for running the pipeline:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="ex" style="color: null;
 background-color: null;
 font-style: inherit;">nextflow</span> run <span class="op" style="color: #5E5E5E;
@@ -1168,7 +1168,7 @@ background-color: null;
 font-style: inherit;">-c</span> conda-forge <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">-c</span> bioconda</span></code></pre></div></div>
-<p>If you want to add something (for example fastqc) to the env use:</p>
+<p>If you want to add something (for example <code>fastqc</code>) to the env use:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="ex" style="color: null;
 background-color: null;
 font-style: inherit;">pixi</span> add fastqc</span></code></pre></div></div>
@@ -1247,13 +1247,13 @@ font-style: inherit;">fastqc</span></span></code></pre></div></div>
 <ul>
 <li>Creates lightweight, portable environments</li>
 <li>Extensive ecosystem of pre-built images (Dockerhub)</li>
-<li>Great for CI/CD pipelines</li>
+<li>Great for <code>CI/CD</code> pipelines</li>
 </ul></li>
 <li><strong>Singularity/Apptainer</strong>: Designed for HPC and scientific computing (no root required)
 <ul>
 <li>Better security model for shared systems</li>
 <li>Native support for HPC workloads</li>
-<li>Seamless conversion from Docker containers</li>
+<li>Seamless conversion from <code>Docker</code> containers</li>
 </ul></li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -1463,7 +1463,7 @@ font-style: inherit;">---</span></span></code></pre></div></div></li>
 <li><p>Preview changes:</p>
 <ul>
 <li>Click the “Preview” button in the top right corner</li>
-<li>Or use Command Palette (Ctrl+Shift+P / Cmd+Shift+P) and type “Quarto: Preview”</li>
+<li>Or use Command Palette (<code>Ctrl+Shift+P</code> / <code>Cmd+Shift+P</code>) and type “Quarto: Preview”</li>
 </ul></li>
 </ol>
 </section>
