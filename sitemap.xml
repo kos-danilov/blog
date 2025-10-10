@@ -2,26 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kos-danilov.github.io/about.html</loc>
-    <lastmod>2025-10-10T19:07:11.144Z</lastmod>
+    <lastmod>2025-10-10T19:40:44.678Z</lastmod>
   </url>
   <url>
     <loc>https://kos-danilov.github.io/posts/nextflow/index.html</loc>
-    <lastmod>2025-10-10T19:07:11.146Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kos-danilov.github.io/posts/make_blog/index.html</loc>
-    <lastmod>2025-10-10T19:07:11.145Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kos-danilov.github.io/index.html</loc>
-    <lastmod>2025-10-10T19:07:11.144Z</lastmod>
+    <lastmod>2025-10-10T19:40:44.685Z</lastmod>
   </url>
   <url>
     <loc>https://kos-danilov.github.io/posts/pixi_containers/index.html</loc>
-    <lastmod>2025-10-10T19:07:11.152Z</lastmod>
+    <lastmod>2025-10-10T19:40:44.690Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kos-danilov.github.io/index.html</loc>
+    <lastmod>2025-10-10T19:40:44.678Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kos-danilov.github.io/posts/make_blog/index.html</loc>
+    <lastmod>2025-10-10T19:40:44.685Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kos-danilov.github.io/posts/ggplot2/index.html</loc>
+    <lastmod>2025-10-10T19:40:44.679Z</lastmod>
   </url>
   <url>
     <loc>https://kos-danilov.github.io/posts/nf_core/index.html</loc>
-    <lastmod>2025-10-10T19:07:11.147Z</lastmod>
+    <lastmod>2025-10-10T19:40:44.686Z</lastmod>
   </url>
 </urlset>
