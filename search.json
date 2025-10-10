@@ -67,7 +67,7 @@
     "href": "index.html",
     "title": "MedBioInfo Blog",
     "section": "",
-    "text": "Standartised nf-core\n\n\n\nnextflow\n\n\n\n\n\n\n\n\n\nOct 9, 2025\n\n\nKonstantin Danilov\n\n\n\n\n\n\n\n\n\n\n\n\nNextflow for pipeline managment\n\n\n\nnextflow\n\ncontainers\n\n\n\n\n\n\n\n\n\nOct 8, 2025\n\n\nKonstantin Danilov\n\n\n\n\n\n\n\n\n\n\n\n\nRunning reproducible analysis using pixi or containers for environment management\n\n\n\npixi\n\ncontainers\n\napptainer\n\n\n\n\n\n\n\n\n\nOct 7, 2025\n\n\nKonstantin Danilov\n\n\n\n\n\n\n\n\n\n\n\n\nHow to make a quarto blog\n\n\n\nquarto\n\n\n\n\n\n\n\n\n\nOct 6, 2025\n\n\nKonstantin Danilov\n\n\n\n\n\nNo matching items"
+    "text": "Standartised nf-core pipelines\n\n\n\nnextflow\n\nnf-core\n\n\n\n\n\n\n\n\n\nOct 9, 2025\n\n\nKonstantin Danilov\n\n\n\n\n\n\n\n\n\n\n\n\nNextflow for pipeline managment\n\n\n\nnextflow\n\ncontainers\n\n\n\n\n\n\n\n\n\nOct 8, 2025\n\n\nKonstantin Danilov\n\n\n\n\n\n\n\n\n\n\n\n\nRunning reproducible analysis using pixi or containers for environment management\n\n\n\npixi\n\ncontainers\n\napptainer\n\n\n\n\n\n\n\n\n\nOct 7, 2025\n\n\nKonstantin Danilov\n\n\n\n\n\n\n\n\n\n\n\n\nHow to make a quarto blog\n\n\n\nquarto\n\n\n\n\n\n\n\n\n\nOct 6, 2025\n\n\nKonstantin Danilov\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/pixi_containers/index.html",
@@ -93,29 +93,8 @@
   {
     "objectID": "posts/nf_core/index.html",
     "href": "posts/nf_core/index.html",
-    "title": "Standartised nf-core",
+    "title": "Standartised nf-core pipelines",
     "section": "",
-    "text": "Nextflow is a workflow management system that simplifies running complex data analyses across different environments including laptops, HPC clusters and the cloud.\nBuilt on the dataflow programming model, it allows tasks to execute in parallel and ensures reproducibility and scalability."
-  },
-  {
-    "objectID": "posts/nf_core/index.html#defenitions",
-    "href": "posts/nf_core/index.html#defenitions",
-    "title": "Standartised nf-core",
-    "section": "Defenitions",
-    "text": "Defenitions\nIn Nextflow, workflows are built from two core components: processes and channels.\n\nProcesses define individual computational tasks, each has its own script, input, and output. They are isolated and can run in parallel.\nChannels are the data connectors between processes.\nThey define how data moves through the workflow, enabling dynamic and asynchronous execution.\n\n\n\n\nChannels and processes\n\n\nChanel can be created using channel factories and modified during execution of the workdlow using operators"
-  },
-  {
-    "objectID": "posts/nf_core/index.html#workflow",
-    "href": "posts/nf_core/index.html#workflow",
-    "title": "Standartised nf-core",
-    "section": "Workflow",
-    "text": "Workflow\nTypical *.nf file looks like this:\n#!/usr/bin/env nextflow\n\n// Parameters & Settings\nparams.reads = \"data/*.fastq\"\nparams.ref   = \"data/genome.fa\"\nparams.outdir = \"results\"\n\n// Imports & Libraries\ninclude { QC } from './modules/qc.nf'\ninclude { ALIGN } from './modules/align.nf'\ninclude { REPORT } from './modules/report.nf'\n\n// Custom Functions\ndef sample_id(path) {\n    return path.baseName.replace('.fastq', '')\n}\n\n// Processes\nprocess PROCESS_NAME{\n    // directives\n    container\n    publishDir \"${params.outdir}/qc\", mode: 'copy'\n\n    input:\n      val x\n      path y\n      tuple z\n\n    output:\n      tuple val x, path f\n    \n    script:\n      // can be a script from bin folder\n      fastqc ...\n\n}\n\n...\n\nworkflow {\n    // Channel creation\n    Channel\n    .fromPath(params.reads)\n    .map { file -&gt; tuple(sample_id(file), file) }\n    .set { reads_ch }\n\n    // workflow itself \n    qc_results = QC(reads_ch)\n    bam_files  = ALIGN(qc_results)\n    ...\n}\nIn order to run the script we need to have a specific version of the Nextflow pre-installed into enviroment. Following CLI interface can be used for running the pipeline:\nnextflow run &lt;pipeline&gt; [options] \\\n [--params-file &lt;file&gt;] \\\n [--&lt;param&gt; &lt;value&gt;] \\\n [-profile &lt;profile&gt;] \\\n [-resume] \\\n [-with-docker|-with-singularity]\nAfter execution nextflow create a lot of files in the work directory. These files can be reused using -resume option in case of repetitive executions. After some time work directory can be cleaned in a way:\nnextflow clean &lt;pipeline&gt; [options] [--work-dir &lt;dir&gt;] [-f]\n\n\n\n\n\n\nTip\n\n\n\nRead more about CLI nextflow commands here"
-  },
-  {
-    "objectID": "posts/nf_core/index.html#comparison-with-other-pipeline-managers",
-    "href": "posts/nf_core/index.html#comparison-with-other-pipeline-managers",
-    "title": "Standartised nf-core",
-    "section": "Comparison with other pipeline managers",
-    "text": "Comparison with other pipeline managers\nOne can choose between various workflow managers:\n\n\n\n\n\n\n\n\n\nFeature\nNextflow\nSnakemake\nCWL (Common Workflow Language)\n\n\n\n\nLanguage\nGroovy\nPython\nYAML/JSON spec\n\n\nParallelism\nDataflow (tasks run when input ready)\nExplicit dependencies in rules\nDAG (tasks run according to DAG)\n\n\nReproducibility\nExcellent: containers & caching\nVery good: conda & containers\nHigh: strict spec & container support\n\n\nWhere it runs\nLocal, HPC, cloud, Kubernetes\nLocal, HPC (cloud possible)\nHPC & cloud via execution engines\n\n\nContainers\nDocker, Singularity, Podman\nDocker, Singularity\nDocker, Singularity\n\n\nEase of use\nModerate (Groovy DSL learning curve)\nEasy if you know Python\nSteeper, verbose YAML\n\n\nPortability\nVery high\nMedium\nHigh\n\n\nCommunity\nBig\nMedium\n???"
+    "text": "If you have a common task for NGS data processing - check this out.\nIn most cases with common data types and analyses, you don’t need to create a workflow from scratch. The Nextflow community has created many pipelines that are highly reproducible, versioned, and utilize containers or Conda environments:\n\n\n\nnf-core pipelines\n\n\n\n\n\n\n\n\nTip\n\n\n\nYou can ensure reproducibility by using a specific version of the pipeline. While there is sometimes limited flexibility in the tool parameters, you can address this by editing specific modules of the pipelines locally.\n\n\nTo configure the pipeline, you should consult the webpage of the corresponding workflow. However, in general, a few key items need to be set up before starting:\n\nPipeline and version\nConfiguration profile for your executor\nWorkflow parameters (including input tables, etc.)\n\n\n\n\n\n\n\nImportant\n\n\n\nThese pipelines are the result of countless hours of open-source work and collaboration, so always remember to cite them properly.\n\n\nThere are many ways to learn more about Nextflow and the community:\n\nSlack\nTraining\nSequera AI"
   }
 ]
