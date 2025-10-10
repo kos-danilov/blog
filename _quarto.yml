@@ -15,7 +15,7 @@ website:
 format:
   html:
     theme:
-      - cosmo
+      - lumen
       - brand
     css: styles.css
 execute:

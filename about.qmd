@@ -13,4 +13,6 @@ about:
 
 ---
 
-About this blog
+MD, MSc Bioinformatics
+
+Bioinformatician with expertise in cancer genomics and transcriptomics, coupled with a previous background in medicine.
